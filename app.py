@@ -2,19 +2,19 @@ from flask import Flask,jsonify, request
 
 app = Flask(__name__)
 
-tasks = [
+data = [
     {
         'id': 1,
-        'title': 'u Buy ',
-        'description': 'Milk, Cheese, Tylenol, Fruit',
-        'done': False
+        'Name': 'Raju ',
+        'Contact': '9987644456',
+        'done': 'false'
         
     },
     {
-         'id': 2,
-        'title': 'u Learn ',
-        'description': 'u Need to find a good python tutorial on the web',
-        'done': False
+        'id': 2,
+        'Name': 'Rahul ',
+        'Contact': '9876543222',
+        'done': 'false'
     }
 ]
 
@@ -32,12 +32,12 @@ def add_task():
 
 
     task = {
-       'id': tasks[-1]['id'] + 1,
+       'id': data[-1]['id'] + 1,
         'title': request.json['title'],
         'description': request.json.get('description', ""),
         'done': False 
     }
-    tasks.append(task)
+    data.append(task)
     return jsonify({
         "status":"success",
         "message":"Task added succesfully!"
@@ -50,7 +50,7 @@ def add_task():
 @app.route("/get-data")
 def get_task():
     return jsonify({
-        "data" : tasks
+        "data" : data
     })
 
 if(__name__ == "__main__"):
